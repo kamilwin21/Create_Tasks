@@ -1,0 +1,27 @@
+<div id="center">
+  
+  <input type="text" class="inputtext"style="margin:2px; width:50%; border:2px solid gray; " [(ngModel)]="taskName" />
+  <input type="date" style="width:20%; border: 2px solid gray;" [(ngModel)]="taskDate" />
+  <button class="buttom" (click)="createTask()" >dodaj</button>
+  
+  <ul>
+    <ng-container *ngFor="let task of tasks; let i=index" [(ngSwitch)]="task.done">
+     <li style="background-color: aquamarine; margin-bottom: 3px; "
+     *ngSwitchCase="false"
+     >{{i+1}}. {{task.name}} - {{task.deadline}} 
+      <button style="float: right;" (click)="deleteTask(task)">-</button>
+      <button style="float: right" (click)="markTaskAsDone(task)">+</button>
+    </li>
+    <li style=" color: gray; background-color: aquamarine; margin-bottom: 3px; "
+    *ngSwitchCase="true"> {{i+1}}. {{task.name}} - {{task.deadline}} </li>
+ 
+    </ng-container>
+
+
+  </ul>
+  <button class="buttom" (click)="clearTask()"
+  [disabled]="tasks.length ===0"
+  >Wyczyść</button>
+
+</div>
+
